@@ -3,9 +3,42 @@
 {% block body %}
     <main id="app">
         <div class="container">
+            <div class="row row-top">
+                <div class="col-6 container">
+                    <h1 v-html="name"></h1>
+                    <div v-html="place"></div>
+                    <div><img :src="lang_pic"> <span v-html="place"></span></div>
+                </div>
+                <div class="col-6">2</div>
+            </div>
             <div class="row">
-                <div class="col-2">1</div>
-                <div class="col-2">2</div>
+                <div class="col-3">
+                    <h2>Portfolio</h2>
+                    <ul>
+                        <li v-for="item in portfolio">
+                            <a :href="item.href" v-html="item.name"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <h2>Experience</h2>
+                </div>
+                <div class="col-3">
+                    <h2>Sample code</h2>
+                </div>
+                <div class="col-3">
+                    <h2>Availability</h2>
+                    <h3>Preferred Environment</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <h2>The Most Amaizing...</h2>
+                </div>
+                <div class="col-3">
+                    <h2>In clients I look for...</h2>
+                </div>
+                <div class="col-6">3</div>
             </div>
         </div>
     </main>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
 .outer {
     display: table;
     position: absolute;
@@ -20,4 +22,30 @@
 
 .inner img {
     width: 100%;
+}
+
+.main {
+    font: 400 16px/20px Roboto;
+}
+
+h1 {
+    font: 500 40px/48px Roboto;
+}
+
+h2 {
+    font: 500 24px/24px Roboto;
+}
+
+h3 {
+    font: 500 20px/24px Roboto;
+}
+
+a {
+    color: #3483CC;
+    text-decoration: none;
+}
+
+
+.row-top {
+    background: #B3BAC0;
 }

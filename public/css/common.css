@@ -45,7 +45,27 @@ a {
     text-decoration: none;
 }
 
+a.dotted {
+    border-bottom: 1px dotted #3483CC;
+}
+
+a:hover {
+    color: #EB5757;
+}
 
 .row-top {
-    background: #B3BAC0;
+    border-bottom: 1px solid #3483CC;
+}
+
+.print {
+    position: relative;
+    background: url(/svg/print.svg) no-repeat;
+    float: right;
+    top: 40px;
+    right: 84px;
+    padding-left: 32px;
+}
+
+.print:hover {
+    background: url(/svg/print-hover.svg) no-repeat;
 }

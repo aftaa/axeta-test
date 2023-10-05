@@ -4,41 +4,65 @@
     <main id="app">
         <div class="container">
             <div class="row row-top">
-                <div class="col-6 container">
-                    <h1 v-html="name"></h1>
-                    <div v-html="place"></div>
-                    <div><img :src="lang_pic"> <span v-html="place"></span></div>
+                <div class="col-sm-6 container">
+                    <img :alt="user.name" :src="user.photo">
+                    <h1 v-html="user.name"></h1>
+                    <div v-html="user.place"></div>
+                    <div><img :src="user.lang_pic"> <span v-html="user.lang"></span></div>
+
+                    <div>
+                        <ul>
+                            <li v-for="item in user.experience">
+                                <span v-html="item.name"></span>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
-                <div class="col-6">2</div>
+                <div class="col-sm-6">
+                    <div class="print">
+                        <a href="#">Print this page</a>
+                    </div>
+                </div>
             </div>
             <div class="row">
-                <div class="col-3">
+                <div class="col-sm-3">
                     <h2>Portfolio</h2>
                     <ul>
-                        <li v-for="item in portfolio">
+                        <li v-for="item in user.portfolio">
                             <a :href="item.href" v-html="item.name"></a>
                         </li>
                     </ul>
                 </div>
-                <div class="col-3">
+                <div class="col-sm-3">
                     <h2>Experience</h2>
+                    <ul>
+                        <li v-for="item in user.experience">
+                            <span v-html="item.name"></span>
+                            <a href="#" v-html="item.experience" class="dotted"></a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-3">
+                <div class="col-sm-3">
                     <h2>Sample code</h2>
                 </div>
-                <div class="col-3">
+                <div class="col-sm-3">
                     <h2>Availability</h2>
+                    <div v-html="user.availability"></div>
                     <h3>Preferred Environment</h3>
+                    <div v-html="user.environment"></div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-3">
+                <div class="col-sm-3">
                     <h2>The Most Amaizing...</h2>
+                    <div v-html="user.amaizing"></div>
                 </div>
-                <div class="col-3">
+                <div class="col-sm-3">
                     <h2>In clients I look for...</h2>
+                    <div v-html="user.expectation"></div>
                 </div>
-                <div class="col-6">3</div>
+                <div class="col-sm-6">3</div>
             </div>
         </div>
     </main>

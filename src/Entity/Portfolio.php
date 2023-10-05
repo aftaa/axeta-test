@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PortfolioRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PortfolioRepository::class)]
 class Portfolio
@@ -11,6 +12,7 @@ class Portfolio
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('api')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'portfolios')]
@@ -18,9 +20,11 @@ class Portfolio
     private ?Candidate $candidate = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('api')]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('api')]
     private ?string $href = null;
 
     public function getId(): ?int

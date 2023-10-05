@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
 class Candidate
@@ -14,39 +16,53 @@ class Candidate
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('api')]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups('api')]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups('api')]
     private ?string $place = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('api')]
     private ?string $photo = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups('api')]
     private ?string $code = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('api')]
     private ?string $availability = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('api')]
     private ?string $environment = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups('api')]
     private ?string $amaizing = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('api')]
     private ?string $expectation = null;
 
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Portfolio::class, cascade: ['persist'])]
+    #[Groups('api')]
+//    #[MaxDepth(1)]
     private Collection $portfolios;
 
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Skill::class, cascade: ['persist'])]
+    #[Groups('api')]
+//    #[MaxDepth(1)]
     private Collection $skills;
 
     #[ORM\Column(length: 50)]
+    #[Groups('api')]
     private ?string $lang = null;
 
     public function __construct()

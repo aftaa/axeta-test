@@ -98,6 +98,11 @@ a.dotted:hover {
     font-weight: 500;
 }
 
+.ul-top li:hover {
+    background: #666;
+    cursor: pointer;
+}
+
 .print {
     position: relative;
     background: url(/svg/print.svg) no-repeat;
@@ -118,6 +123,10 @@ a.dotted:hover {
     border-radius: 84px;
 }
 
+#userpic:hover {
+    opacity: .75;
+}
+
 .col-block ul {
     list-style: none;
     padding: 0;
@@ -136,13 +145,14 @@ a.dotted:hover {
 .col-quote {
     text-align: center;
     width: 70%;
-    margin: 0 15%;
+    margin: 10% 15%;
 }
 
 .open-quote {
     width: 40px;
     height: 32px;
     background: url(/svg/open-quote.svg);
+    position: absolute;
 }
 
 .close-quote {
@@ -150,6 +160,6 @@ a.dotted:hover {
     height: 32px;
     background: url(/svg/close-quote.svg);
     position: absolute;
-    bottom: 23px;
+    bottom: 42px;
     right: 23px;
 }

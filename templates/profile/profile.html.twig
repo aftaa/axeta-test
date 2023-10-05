@@ -16,7 +16,7 @@
 
                         <div>
                             <ul class="ul-top">
-                                <li v-for="item in user.experience">
+                                <li v-for="item in user.skills">
                                     <span v-html="item.name"></span>
                                 </li>
                                 <li class="plus">+</li>
@@ -44,7 +44,7 @@
                 <div class="col-sm-3 col-block">
                     <h2>Experience</h2>
                     <ul>
-                        <li v-for="item in user.experience">
+                        <li v-for="item in user.skills">
                             &ndash; &nbsp;
                             <span v-html="item.name" class="exp-bold"></span>
                             <a href="#" v-html="item.experience" class="dotted exp-link"></a>
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3 col-block">
+                <div class="col-sm-3 col-block" style="position: relative">
                     <h2>The Most Amaizing...</h2>
                     <div class="open-quote"></div>
                     <div class="close-quote"></div>

@@ -11,7 +11,7 @@ let app = new Vue({
             lang_pic:
                 '/svg/en.svg',
 
-            experience:
+            skills:
                 [{
                     name: 'PHP',
                     experience: '6 year'

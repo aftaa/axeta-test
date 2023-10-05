@@ -15,11 +15,6 @@ class AxetaPurger extends ORMPurger
         parent::__construct($this->entityManager, $excluded);
     }
 
-    /**
-     * Purges the MySQL database with temporarily disabled foreign key checks.
-     *
-     * {@inheritDoc}
-     */
     public function purge(): void
     {
         $connection = $this->entityManager->getConnection();

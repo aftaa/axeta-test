@@ -2,20 +2,26 @@
 
 {% block body %}
     <main id="app">
-        <div class="container-sm">
+        <div class="container">
             <div class="row row-top">
-                <div class="col-sm-6 container">
-                    <img :alt="user.name" :src="user.photo">
-                    <h1 v-html="user.name"></h1>
-                    <div v-html="user.place"></div>
-                    <div><img :src="user.lang_pic"> <span v-html="user.lang"></span></div>
+                <div class="col-sm-6">
+                    <div style="float: left">
+                        <img :alt="user.name" :src="user.photo">
+                    </div>
+                    <div class="main-info" style="float: left;">
+                        <h1 v-html="user.name"></h1>
 
-                    <div>
-                        <ul>
-                            <li v-for="item in user.experience">
-                                <span v-html="item.name"></span>
-                            </li>
-                        </ul>
+                        <div v-html="user.place"></div>
+                        <div><img :src="user.lang_pic"> <span v-html="user.lang"></span></div>
+
+                        <div>
+                            <ul class="ul-top">
+                                <li v-for="item in user.experience">
+                                    <span v-html="item.name"></span>
+                                </li>
+                                <li class="plus">+</li>
+                            </ul>
+                        </div>
                     </div>
 
                 </div>

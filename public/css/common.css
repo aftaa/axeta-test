@@ -56,18 +56,43 @@ a:hover {
 }
 
 .row-top {
-    border-bottom: 1px solid #3483CC;
+    padding: 30px 0;
+    background: #64dcee;
+}
+
+.main-info {
+    padding: 0 23px;
 }
 
 .col-block {
     padding: 23px;
 }
 
+.ul-top {
+    list-style: none;
+    overflow: hidden;
+    margin-left: -33px;
+}
+
+.ul-top li {
+    float: left;
+    background: #333;
+    color: #fff;
+    font: 400 14px/16px Roboto;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.ul-top li.plus {
+    padding: 4px 10px;
+}
+
 .print {
     position: relative;
     background: url(/svg/print.svg) no-repeat;
     float: right;
-    top: 40px;
+    top: 13px;
     right: 84px;
     padding-left: 32px;
 }

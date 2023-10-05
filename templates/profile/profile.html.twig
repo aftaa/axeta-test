@@ -2,7 +2,7 @@
 
 {% block body %}
     <main id="app">
-        <div class="container">
+        <div class="container-sm">
             <div class="row row-top">
                 <div class="col-sm-6 container">
                     <img :alt="user.name" :src="user.photo">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-3 col-block">
                     <h2>Portfolio</h2>
                     <ul>
                         <li v-for="item in user.portfolio">
@@ -34,7 +34,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 col-block">
                     <h2>Experience</h2>
                     <ul>
                         <li v-for="item in user.experience">
@@ -43,10 +43,10 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 col-block">
                     <h2>Sample code</h2>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 col-block">
                     <h2>Availability</h2>
                     <div v-html="user.availability"></div>
                     <h3>Preferred Environment</h3>
@@ -54,11 +54,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-3 col-block">
                     <h2>The Most Amaizing...</h2>
                     <div v-html="user.amaizing"></div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 col-block">
                     <h2>In clients I look for...</h2>
                     <div v-html="user.expectation"></div>
                 </div>

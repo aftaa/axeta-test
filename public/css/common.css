@@ -34,10 +34,12 @@ h1 {
 
 h2 {
     font: 500 24px/24px Roboto;
+    margin: 23px 0 13px 0;
 }
 
 h3 {
     font: 500 20px/24px Roboto;
+    margin: 23px 0 13px 0;
 }
 
 a {
@@ -55,6 +57,10 @@ a:hover {
 
 .row-top {
     border-bottom: 1px solid #3483CC;
+}
+
+.col-block {
+    padding: 23px;
 }
 
 .print {

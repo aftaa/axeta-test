@@ -9,11 +9,11 @@ let app = new Vue({
     methods: {
         fetch: () => {
             fetch('/api/candidate/' + candidateId, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
+                // method: 'GET',
+                // headers: {
+                //     'Accept': 'application/json',
+                //     'Content-Type': 'application/json'
+                // }
             })
                 .then(response => response.json())
                 .then(user => {

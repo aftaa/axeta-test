@@ -9,9 +9,10 @@
                         <img id="userpic" :alt="user.name" :src="user.photo">
                     </div>
                     <div class="main-info" style="float: left;">
-{#                        <h1 v-html="user.name"></h1>#}
 
-                        <input type="text" id="user-name" v-model="user.name" class="h1">
+                        <input title="Edit and press Enter" type="text" id="user-name"
+                               v-model="user.name"
+                               class="h1">
 
                         <div v-html="user.place" class="main-info-item"></div>
                         <div class="main-info-item"><img src="{{ asset('/svg/en.svg') }}">
@@ -83,7 +84,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center" id="spinner-wrapper" v-seen="spinner">
+        <div class="d-flex justify-content-center" id="spinner-wrapper" v-if="spinner">
             <div class="spinner-border" role="status" id="spinner">
                 <span class="visually-hidden">Загрузка...</span>
             </div>

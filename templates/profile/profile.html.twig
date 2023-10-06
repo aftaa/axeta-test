@@ -4,24 +4,27 @@
     <main id="app">
         <div class="container">
             <div class="row row-top">
-                <div class="col-sm-6">
+                <div class="col-sm-10">
                     <div style="float: left">
-                        <img id="userpic" :alt="user.name" :src="user.photo">
+                        <img id="userpic" :alt="candidate.name" :src="candidate.photo">
                     </div>
                     <div class="main-info" style="float: left;">
 
-                        <input title="Edit and press Enter" type="text" id="user-name"
-                               v-model="user.name"
-                               class="h1">
+                        <input title="Edit and press Enter" type="text" required
+                               v-model="candidate.name" v-on:keyup.enter="storeName" v-on:keyup="nameKeyUp"
+                               v-bind:class="{ name: true, nameIsOk: nameIsOk, nameIsKo: nameIsKo }">
+                        <br>
+                        <input title="Edit and press Enter" type="text" required
+                               v-model="candidate.place" v-on:keyup.enter="storePlace" v-on:keyup="placeKeyUp"
+                               v-bind:class="{ place: true, placeIsOk: placeIsOk, placeIsKo: placeIsKo }">
 
-                        <div v-html="user.place" class="main-info-item"></div>
                         <div class="main-info-item"><img src="{{ asset('/svg/en.svg') }}">
-                            <span v-html="user.lang"></span>
+                            <span v-html="candidate.lang"></span>
                         </div>
 
                         <div>
                             <ul class="ul-top">
-                                <li v-for="item in user.skills">
+                                <li v-for="item in candidate.skills">
                                     <span v-html="item.name"></span>
                                 </li>
                                 <li class="plus">+</li>
@@ -30,7 +33,7 @@
                     </div>
 
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-2">
                     <div class="print">
                         <a href="#">Print this page</a>
                     </div>
@@ -40,7 +43,7 @@
                 <div class="col-sm-3 col-block">
                     <h2>Portfolio</h2>
                     <ul>
-                        <li v-for="item in user.portfolios">
+                        <li v-for="item in candidate.portfolios">
                             &ndash; &nbsp;
                             <a :href="item.href" v-html="item.name"></a>
                         </li>
@@ -49,7 +52,7 @@
                 <div class="col-sm-3 col-block">
                     <h2>Experience</h2>
                     <ul>
-                        <li v-for="item in user.skills">
+                        <li v-for="item in candidate.skills">
                             &ndash; &nbsp;
                             <span v-html="item.name" class="exp-bold"></span>
                             <a href="#" v-html="item.experience + ' years'" class="dotted exp-link"></a>
@@ -61,9 +64,9 @@
                 </div>
                 <div class="col-sm-3 col-block">
                     <h2>Availability</h2>
-                    <div v-html="user.availability"></div>
+                    <div v-html="candidate.availability"></div>
                     <h3>Preferred Environment</h3>
-                    <div v-html="user.environment"></div>
+                    <div v-html="candidate.environment"></div>
                 </div>
             </div>
             <div class="row">
@@ -71,27 +74,28 @@
                     <h2>The Most Amaizing...</h2>
                     <div class="open-quote"></div>
                     <div class="close-quote"></div>
-                    <div v-html="user.amaizing" class="col-quote"></div>
+                    <div v-html="candidate.amaizing" class="col-quote"></div>
                 </div>
                 <div class="col-sm-3 col-block" style="position: relative">
                     <h2>In clients I look for...</h2>
                     <div class="open-quote"></div>
                     <div class="close-quote"></div>
-                    <div v-html="user.expectation" class="col-quote"></div>
+                    <div v-html="candidate.expectation" class="col-quote"></div>
                 </div>
                 <div class="col-sm-6">
                     <div id="map"></div>
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center" id="spinner-wrapper" v-if="spinner">
-            <div class="spinner-border" role="status" id="spinner">
+        <div class="d-flex justify-content-center spinner-wrapper">
+            <div class="spinner-border spinner" role="status" v-if="spinner">
                 <span class="visually-hidden">Загрузка...</span>
             </div>
         </div>
     </main>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}?t={{ 'now'|date('U') }}"></script>
     <script>
-        let candidateId = {{ candidateId }};
+        app.candidateId = {{ candidateId }};
+        app.fetchCandidate();
     </script>
-    <script type="text/javascript" src="{{ asset('js/common.js') }}?t={{ 'now'|date('U') }}"></script>
 {% endblock %}

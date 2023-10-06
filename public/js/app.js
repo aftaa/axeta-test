@@ -25,15 +25,28 @@ let app = new Vue({
         },
 
         fetchCandidate: () => {
+            app.spinner = true;
             app.fetch('/api/candidate/' + app.candidateId)
                 .then(response => response.json())
-                .then(user => app.candidate = user);
+                .then(user => {
+                    app.candidate = user;
+                    app.sortSkills();
+                    app.spinner = false;
+                });
+        },
 
+        sortSkills: () => {
+            app.candidate.skills.sort((a, b) => {
+                if (a.experience > b.experience) return -1;
+                if (a.experience == b.experience) return 0;
+                if (a.experience < b.experience) return +1;
+            });
         },
 
         nameKeyUp: () => app.nameIsKo = !app.candidate.name.length,
         placeKeyUp: () => {
             app.placeIsKo = !app.candidate.place.length;
+            if (app.placeIsKo) return;
             let pcre = /[^ ,0-9a-zа-я\.]/i;
             app.placeIsKo = pcre.test(app.candidate.place);
         },
@@ -52,7 +65,7 @@ let app = new Vue({
         storePlace: () => {
             if (app.placeIsKo) return;
             app.spinner = true;
-            app.fetch('/api/candidate/' + app.candidateId, 'PATCH', {name: app.candidate.place})
+            app.fetch('/api/candidate/' + app.candidateId, 'PATCH', {place: app.candidate.place})
                 .then(() => {
                     app.spinner = false;
                     app.placeIsOk = true;

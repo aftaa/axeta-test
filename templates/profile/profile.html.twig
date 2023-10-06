@@ -9,10 +9,14 @@
                         <img id="userpic" :alt="user.name" :src="user.photo">
                     </div>
                     <div class="main-info" style="float: left;">
-                        <h1 v-html="user.name"></h1>
+{#                        <h1 v-html="user.name"></h1>#}
+
+                        <input type="text" id="user-name" v-model="user.name" class="h1">
 
                         <div v-html="user.place" class="main-info-item"></div>
-                        <div class="main-info-item"><img :src="user.lang_pic"> <span v-html="user.lang"></span></div>
+                        <div class="main-info-item"><img src="{{ asset('/svg/en.svg') }}">
+                            <span v-html="user.lang"></span>
+                        </div>
 
                         <div>
                             <ul class="ul-top">
@@ -35,7 +39,7 @@
                 <div class="col-sm-3 col-block">
                     <h2>Portfolio</h2>
                     <ul>
-                        <li v-for="item in user.portfolio">
+                        <li v-for="item in user.portfolios">
                             &ndash; &nbsp;
                             <a :href="item.href" v-html="item.name"></a>
                         </li>
@@ -47,7 +51,7 @@
                         <li v-for="item in user.skills">
                             &ndash; &nbsp;
                             <span v-html="item.name" class="exp-bold"></span>
-                            <a href="#" v-html="item.experience" class="dotted exp-link"></a>
+                            <a href="#" v-html="item.experience + ' years'" class="dotted exp-link"></a>
                         </li>
                     </ul>
                 </div>
@@ -74,8 +78,19 @@
                     <div class="close-quote"></div>
                     <div v-html="user.expectation" class="col-quote"></div>
                 </div>
-                <div class="col-sm-6">3</div>
+                <div class="col-sm-6">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center" id="spinner-wrapper" v-seen="spinner">
+            <div class="spinner-border" role="status" id="spinner">
+                <span class="visually-hidden">Загрузка...</span>
             </div>
         </div>
     </main>
+    <script>
+        let candidateId = {{ candidateId }};
+    </script>
+    <script type="text/javascript" src="{{ asset('js/common.js') }}?t={{ 'now'|date('U') }}"></script>
 {% endblock %}

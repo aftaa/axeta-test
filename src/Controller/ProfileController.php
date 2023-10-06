@@ -8,11 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProfileController extends AbstractController
 {
-    #[Route('/profile/{id}', name: 'app_profile')]
-    public function index(int $id): Response
+    #[Route('/profile/{candidateId}', name: 'app_profile')]
+    public function index(int $candidateId): Response
     {
         return $this->render('profile/profile.html.twig', [
-            'id' => $id,
+            'candidateId' => $candidateId,
         ]);
     }
 }

@@ -28,8 +28,25 @@
     font: 400 16px/20px Roboto;
 }
 
-h1 {
+.h1 {
     font: 500 40px/48px Roboto;
+    width: 360px;
+    height: 48px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.h1:focus {
+    background: #aaa;
+    border-bottom: 1px solid #000;
+}
+
+.h1.ok {
+    background: url('/svg/ok.svg') right 10px top 17px no-repeat;
+}
+.h1.ko {
+    background: url('/svg/ko.svg') right 10px top 17px no-repeat;
 }
 
 h2 {
@@ -163,3 +180,14 @@ a.dotted:hover {
     bottom: 42px;
     right: 23px;
 }
+
+#spinner-wrapper {
+    position: absolute;
+    margin: 25% 50%;
+    z-index: 2147483647;
+}
+
+#spinner {
+    display: block;
+}
+

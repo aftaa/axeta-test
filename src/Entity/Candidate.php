@@ -53,12 +53,10 @@ class Candidate
 
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Portfolio::class, cascade: ['persist'])]
     #[Groups('api')]
-//    #[MaxDepth(1)]
     private Collection $portfolios;
 
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Skill::class, cascade: ['persist'])]
     #[Groups('api')]
-//    #[MaxDepth(1)]
     private Collection $skills;
 
     #[ORM\Column(length: 50)]

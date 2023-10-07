@@ -6,11 +6,10 @@
         <div class="container">
             <div class="row row-top">
                 <div class="col-sm-10">
-                    <div style="float: left">
+                    <div class="float-left">
                         <img id="userpic" :alt="candidate.name" :src="candidate.photo">
                     </div>
-                    <div class="main-info" style="float: left;">
-
+                    <div class="main-info float-left">
                         <input title="Edit and press Enter" type="text" required
                                v-model="candidate.name" v-on:keyup.enter="storeName" v-on:keyup="nameKeyUp"
                                v-bind:class="{ name: true, nameIsOk: nameIsOk, nameIsKo: nameIsKo }">
@@ -22,35 +21,28 @@
                         <div class="main-info-item"><img src="{{ asset('/svg/en.svg') }}">
                             <span v-html="candidate.lang"></span>
                         </div>
-
                         <div>
                             <ul class="ul-top">
                                 <li v-for="skill in candidate.skills">
                                     <div v-html="skill.name" class="skill-link" v-on:click="editSkill"></div>
-                                    <input class="skill-input display-none" type="text"
-                                           v-bind:value="skill.name" v-bind:data-id="skill.id"
-                                           v-on:keyup.esc="escapeSkill" v-on:keyup.enter="saveSkill">
+                                    <input class="skill-input display-none" type="text" v-bind:value="skill.name"
+                                           v-bind:data-id="skill.id" v-on:keyup.esc="escapeSkill"
+                                           v-on:keyup.enter="saveSkill">
                                 </li>
                                 <li>
-                                    <div class="skill-link skill-plus"
-                                         v-on:click="newSkill = true"
-                                         v-if="!newSkill">
+                                    <div class="skill-link skill-plus" v-on:click="newSkill = true" v-if="!newSkill">
                                         +
                                     </div>
-                                    <input v-bind:class="{'skill-input': true}"
-                                           v-if="newSkill"
-                                           v-on:keyup.esc="newSkill = false"
-                                           v-on:keyup.enter="addSkill"
-                                           type="text">
+                                    <input v-bind:class="{'skill-input': true}" v-if="newSkill" type="text"
+                                           v-on:keyup.esc="newSkill = false" v-on:keyup.enter="addSkill">
                                 </li>
                             </ul>
                         </div>
                     </div>
-
                 </div>
                 <div class="col-sm-2">
                     <div class="print">
-                        <a href="#">Print this page</a>
+                        <a href="javascript:print()">Print this page</a>
                     </div>
                 </div>
             </div>
@@ -59,8 +51,7 @@
                     <h2>Portfolio</h2>
                     <ul>
                         <li v-for="item in candidate.portfolios">
-                            &ndash; &nbsp;
-                            <a :href="item.href" v-html="item.name"></a>
+                            &ndash; &nbsp;<a :href="item.href" v-html="item.name"></a>
                         </li>
                     </ul>
                 </div>
@@ -68,14 +59,13 @@
                     <h2>Experience</h2>
                     <ul>
                         <li v-for="skill in candidate.skills">
-                            &ndash; &nbsp;
-                            <span v-html="skill.name" class="exp-bold"></span>
+                            &ndash; &nbsp;<span v-html="skill.name" class="exp-bold"></span>
                             <a href="#" v-html="skill.experience + ' years'" class="dotted exp-link"
-                                v-on:click="expEdit"></a>
+                               v-on:click="expEdit"></a>
                             <input type="text" pattern="[\d\.]+" v-html="skill.experience" v-bind:data-id="skill.id"
                                    v-bind:value="skill.experience" title="Press escape to cancel or Enter to save"
                                    v-on:keyup.esc="expEsc" v-on:keyup.enter="expSave" maxlength="4"
-                                   style="width: 30px; height: 20px" class="skill-input display-none">
+                                   class="skill-input exp-input display-none">
                         </li>
                     </ul>
                 </div>
@@ -94,13 +84,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3 col-block" style="position: relative">
+                <div class="col-sm-3 col-block position-relative">
                     <h2>The Most Amaizing...</h2>
                     <div class="open-quote"></div>
                     <div class="close-quote"></div>
                     <div v-html="candidate.amaizing" class="col-quote"></div>
                 </div>
-                <div class="col-sm-3 col-block" style="position: relative">
+                <div class="col-sm-3 col-block position-relative">
                     <h2>In clients I look for...</h2>
                     <div class="open-quote"></div>
                     <div class="close-quote"></div>
@@ -119,8 +109,8 @@
         </div>
         <br><br>
     </main>
-    <script type="text/javascript" src="{{ asset('js/app.js') }}?t={{ 'now'|date('U') }}"></script>
-    {#    <script type="text/javascript" src="{{ asset('js/map.js') }}?t={{ 'now'|date('U') }}"></script> #}
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
     <script>
         app.candidateId = {{ candidateId }};
         app.fetchCandidate();

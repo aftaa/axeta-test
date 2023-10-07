@@ -4,6 +4,14 @@
     display: none;
 }
 
+.float-left {
+    float: left;
+}
+
+.position-relative {
+    position: relative;
+}
+
 body {
     background: #e5e5e5;
 }
@@ -191,7 +199,54 @@ a.dotted:hover {
     display: block;
 }
 
-/** sample code */
+.ul-top {
+    list-style: none;
+    overflow: hidden;
+    margin-left: -33px;
+}
+
+.ul-top li {
+    float: left;
+    margin-right: 10px;
+    margin-top: 13px;
+}
+
+.ul-top div.skill-link.skill-plus {
+    padding: 4px 10px;
+    font-weight: 500;
+}
+
+.ul-top li:hover div.skill-link {
+    background: #666;
+    cursor: pointer;
+}
+
+div.skill-link {
+    background: #333;
+    color: #fff;
+    font: 400 14px/16px Roboto;
+    padding: 4px;
+    border-radius: 4px;
+    display: inline;
+}
+
+.skill-input {
+    font: 400 14px/16px Roboto;
+    width: 159px;
+    height: 24px;
+    border: none;
+    outline: none;
+    background: #e2e3e3;
+    border-bottom: 1px solid #000;
+}
+
+.exp-input {
+    width: 42px;
+    height: 25px;
+    padding: 3px 5px;
+    text-align: center;
+}
+
 pre {
     margin-left: -23px
 }
@@ -216,4 +271,15 @@ pre {
 
 .hljs-ln-code {
     padding-left: 10px !important;
+}
+
+@media print {
+    .skill-plus, .print {
+        display: none !important;
+    }
+
+    .skill-link {
+        color: #000 !important;
+        background: #fff !important;
+    }
 }

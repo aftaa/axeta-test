@@ -35,9 +35,8 @@ let app = new Vue({
 
         sortSkills: () => {
             app.candidate.skills.sort((a, b) => {
-                if (Number(a.experience) > Number(b.experience)) return -1;
-                if (Number(a.experience) === Number(b.experience)) return 0;
-                if (Number(a.experience) < Number(b.experience)) return +1;
+                a = Number(a.experience), b = Number(b.experience);
+                return b - a;
             });
         },
 
@@ -53,6 +52,7 @@ let app = new Vue({
         },
 
         nameKeyUp: () => app.nameIsKo = !app.candidate.name.length,
+
         placeKeyUp: () => {
             app.placeIsKo = !app.candidate.place.length;
             if (app.placeIsKo) return;

@@ -219,3 +219,16 @@ a.dotted:hover {
     height: 100%;
     border-radius: 5px;
 }
+/**
+@see https://mb4.ru/web-services/other/highlight-js/1394-line-numbers-highlight-js.html
+ */
+.hljs-ln-numbers {
+    text-align: center;
+    color: #f36;
+    border-right: 1px solid #f36;
+    vertical-align: top;
+    min-width: 25px;
+}
+.hljs-ln-code {
+    padding-left: 10px !important;
+}

@@ -19,13 +19,11 @@ class CandidateController extends AbstractController
     #[Route('/api/candidate/{id}', methods: ['GET'])]
     public function get(Candidate $candidate, SerializerInterface $serializer): JsonResponse
     {
-        $context = (new ObjectNormalizerContextBuilder())
-            ->withGroups(['api'])
-            ->toArray();
+        $context = (new ObjectNormalizerContextBuilder())->withGroups(['api'])->toArray();
         return $this->json($serializer->normalize($candidate, null, $context));
     }
 
-    #[Route('/api/candidate/{id}', methods: ['PUT'])]
+    #[Route('/api/candidate/name/{id}', methods: ['PATCH'])]
     public function putName(Candidate $candidate, #[MapRequestPayload] CandidateName $dto, CandidateRepository $repository): JsonResponse
     {
         $candidate->setName($dto->getName());
@@ -33,7 +31,7 @@ class CandidateController extends AbstractController
         return $this->json(null, Response::HTTP_NO_CONTENT);
     }
 
-    #[Route('/api/candidate/{id}', methods: ['PATCH'])]
+    #[Route('/api/candidate/place/{id}', methods: ['PATCH'])]
     public function patchPlace(Candidate $candidate, #[MapRequestPayload] CandidatePlace $dto, CandidateRepository $repository): JsonResponse
     {
         $candidate->setPlace($dto->getPlace());

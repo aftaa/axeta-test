@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <main id="app">
+    <main id="app" style="display: none;">
         <br><br>
         <div class="container">
             <div class="row row-top">
@@ -25,10 +25,22 @@
 
                         <div>
                             <ul class="ul-top">
-                                <li v-for="item in candidate.skills">
-                                    <span v-html="item.name"></span>
+                                <li v-for="skill in candidate.skills">
+                                    <div v-html="skill.name" v-bind:class="{'skill-link': true}"></div>
+                                    <input v-bind:class="{'skill-input': true, 'skill-hidden': true}" type="text">
                                 </li>
-                                <li class="plus">+</li>
+                                <li>
+                                    <div class="skill-link skill-plus"
+                                         v-on:click="newSkill = true"
+                                         v-if="!newSkill">
+                                        +
+                                    </div>
+                                    <input v-bind:class="{'skill-input': true}"
+                                           v-if="newSkill"
+                                           v-on:keyup.esc="newSkill = false"
+                                           v-on:keyup.enter="addSkill"
+                                           type="text">
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -101,7 +113,7 @@
         <br><br>
     </main>
     <script type="text/javascript" src="{{ asset('js/app.js') }}?t={{ 'now'|date('U') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/map.js') }}?t={{ 'now'|date('U') }}"></script>
+{#    <script type="text/javascript" src="{{ asset('js/map.js') }}?t={{ 'now'|date('U') }}"></script>#}
     <script>
         app.candidateId = {{ candidateId }};
         app.fetchCandidate();

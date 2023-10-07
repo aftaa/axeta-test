@@ -115,33 +115,6 @@ a.dotted:hover {
     padding: 23px;
 }
 
-.ul-top {
-    list-style: none;
-    overflow: hidden;
-    margin-left: -33px;
-}
-
-.ul-top li {
-    float: left;
-    background: #333;
-    color: #fff;
-    font: 400 14px/16px Roboto;
-    padding: 4px;
-    border-radius: 4px;
-    margin-right: 10px;
-    margin-top: 13px;
-}
-
-.ul-top li.plus {
-    padding: 4px 10px;
-    font-weight: 500;
-}
-
-.ul-top li:hover {
-    background: #666;
-    cursor: pointer;
-}
-
 .print {
     position: relative;
     background: url(/svg/print.svg) no-repeat;
@@ -214,11 +187,18 @@ a.dotted:hover {
     display: block;
 }
 
+/** sample code */
+pre {
+    margin-left: -23px
+}
+
+/** yandex map */
 #map {
     width: 95%;
     height: 100%;
     border-radius: 5px;
 }
+
 /**
 @see https://mb4.ru/web-services/other/highlight-js/1394-line-numbers-highlight-js.html
  */
@@ -229,6 +209,7 @@ a.dotted:hover {
     vertical-align: top;
     min-width: 25px;
 }
+
 .hljs-ln-code {
     padding-left: 10px !important;
 }

@@ -14,7 +14,9 @@ let app = new Vue({
         nameIsKo: false,
 
         placeIsOk: false,
-        placeIsKo: false
+        placeIsKo: false,
+
+        newSkill: false
     },
     methods: {
         fetch: (uri, method = 'GET', body = null) => {
@@ -40,13 +42,13 @@ let app = new Vue({
         },
 
         fetchCandidate: () => {
-            app.spinner = true;
-            app.fetch('/api/candidate/' + app.candidateId)
+            return app.fetch('/api/candidate/' + app.candidateId)
                 .then(response => response.json())
                 .then(user => {
                     app.candidate = user;
                     app.sortSkills();
-                    app.spinner = false;
+                    document.getElementById('app').style.display = 'block';
+                    document.getElementById('loading').style.display = 'none';
                 });
         },
 
@@ -79,6 +81,21 @@ let app = new Vue({
                     init();
                     setTimeout(() => app.placeIsOk = false, 1000);
                 });
+        },
+
+        addSkill: (event) => {
+            let skillName = event.target.value;
+            if (!skillName.length) return;
+            app.spinner = true;
+            app.fetch('/api/skill', 'POST', {
+                candidateId: app.candidateId,
+                name: skillName
+            })
+                .then(() => {
+                    app.newSkill = false;
+                    app.fetchCandidate()
+                        .then(() => app.spinner = false);
+                })
         }
     }
 });

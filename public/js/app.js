@@ -115,6 +115,8 @@ let app = new Vue({
             if (!value.length && confirm('Confirm delete the skill')) {
                 app.fetch('/api/skill/' + id, 'DELETE')
                     .then(() => {
+                        event.target.style.display = 'none';
+                        event.target.previousElementSibling.style.display = 'block';
                         app.fetchCandidate();
                         app.spinner = false;
                     });

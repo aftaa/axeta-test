@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <main id="app" style="display: none;">
+    <main id="app" class="display-none">
         <br><br>
         <div class="container">
             <div class="row row-top">
@@ -26,8 +26,10 @@
                         <div>
                             <ul class="ul-top">
                                 <li v-for="skill in candidate.skills">
-                                    <div v-html="skill.name" v-bind:class="{'skill-link': true}"></div>
-                                    <input v-bind:class="{'skill-input': true, 'skill-hidden': true}" type="text">
+                                    <div v-html="skill.name" class="skill-link" v-on:click="editSkill"></div>
+                                    <input class="skill-input display-none" type="text"
+                                           v-bind:value="skill.name" v-bind:data-id="skill.id"
+                                           v-on:keyup.esc="escapeSkill" v-on:keyup.enter="saveSkill">
                                 </li>
                                 <li>
                                     <div class="skill-link skill-plus"
@@ -65,10 +67,15 @@
                 <div class="col-sm-3 col-block">
                     <h2>Experience</h2>
                     <ul>
-                        <li v-for="item in candidate.skills">
+                        <li v-for="skill in candidate.skills">
                             &ndash; &nbsp;
-                            <span v-html="item.name" class="exp-bold"></span>
-                            <a href="#" v-html="item.experience + ' years'" class="dotted exp-link"></a>
+                            <span v-html="skill.name" class="exp-bold"></span>
+                            <a href="#" v-html="skill.experience + ' years'" class="dotted exp-link"
+                                v-on:click="expEdit"></a>
+                            <input type="text" pattern="[\d\.]+" v-html="skill.experience" v-bind:id="skill.id"
+                                   v-bind:value="skill.experience" title="Press escape to cancel or Enter to save"
+                                   v-on:keyup.esc="expEsc" v-on:keyup.enter="expSave" maxlength="4"
+                                   style="width: 30px; height: 20px" class="skill-input display-none">
                         </li>
                     </ul>
                 </div>
@@ -113,7 +120,7 @@
         <br><br>
     </main>
     <script type="text/javascript" src="{{ asset('js/app.js') }}?t={{ 'now'|date('U') }}"></script>
-{#    <script type="text/javascript" src="{{ asset('js/map.js') }}?t={{ 'now'|date('U') }}"></script>#}
+    {#    <script type="text/javascript" src="{{ asset('js/map.js') }}?t={{ 'now'|date('U') }}"></script> #}
     <script>
         app.candidateId = {{ candidateId }};
         app.fetchCandidate();

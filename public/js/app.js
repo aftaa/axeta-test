@@ -67,7 +67,7 @@ let app = new Vue({
                 .then(() => {
                     app.spinner = false;
                     app.nameIsOk = true;
-                    setTimeout(() => app.nameIsOk = false, 1000);
+                    setTimeout(() => app.nameIsOk = false, 1500);
                 });
         },
 
@@ -79,11 +79,11 @@ let app = new Vue({
                     app.spinner = false;
                     app.placeIsOk = true;
                     init();
-                    setTimeout(() => app.placeIsOk = false, 1000);
+                    setTimeout(() => app.placeIsOk = false, 1500);
                 });
         },
 
-        addSkill: (event) => {
+        addSkill: event => {
             let skillName = event.target.value;
             if (!skillName.length) return;
             app.spinner = true;
@@ -96,6 +96,55 @@ let app = new Vue({
                     app.fetchCandidate()
                         .then(() => app.spinner = false);
                 })
+        },
+
+        editSkill: event => {
+            event.target.style.display = 'none';
+            event.target.nextElementSibling.style.display = 'block';
+        },
+        
+        escapeSkill: event => {
+            event.target.style.display = 'none';
+            event.target.previousElementSibling.style.display = 'block';
+        },
+
+        saveSkill: event => {
+            let id = event.target.dataset.id;
+            let value = event.target.value;
+            app.spinner = true;
+            if (!value.length && confirm('Confirm delete the skill')) {
+                app.fetch('/api/skill/' + id, 'DELETE')
+                    .then(() => {
+                        app.fetchCandidate();
+                        app.spinner = false;
+                    });
+            } else {
+                app.fetch('/api/skill/name/' + id, 'PATCH', {name: value})
+                    .then(() => {
+                        event.target.previousElementSibling.innerHTML = value;
+                        event.target.previousElementSibling.style.display = 'block';
+                        event.target.style.display = 'none';
+                        app.fetchCandidate();
+                        app.spinner = false;
+                    });
+            }
+        },
+
+        expEdit: event => {
+            event.target.style.display = 'none';
+            let input = event.target.nextElementSibling;
+            input.style.display = 'inline';
+            input.focus();
+            input.select();
+        },
+
+        expEsc: event => {
+            event.target.style.display = 'none';
+            event.target.previousElementSibling.style.display = 'inline';
+        },
+
+        expSave: event => {
+
         }
     }
 });

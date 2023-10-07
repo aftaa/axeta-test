@@ -72,7 +72,7 @@
                             <span v-html="skill.name" class="exp-bold"></span>
                             <a href="#" v-html="skill.experience + ' years'" class="dotted exp-link"
                                 v-on:click="expEdit"></a>
-                            <input type="text" pattern="[\d\.]+" v-html="skill.experience" v-bind:id="skill.id"
+                            <input type="text" pattern="[\d\.]+" v-html="skill.experience" v-bind:data-id="skill.id"
                                    v-bind:value="skill.experience" title="Press escape to cancel or Enter to save"
                                    v-on:keyup.esc="expEsc" v-on:keyup.enter="expSave" maxlength="4"
                                    style="width: 30px; height: 20px" class="skill-input display-none">

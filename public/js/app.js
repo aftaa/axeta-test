@@ -35,9 +35,9 @@ let app = new Vue({
 
         sortSkills: () => {
             app.candidate.skills.sort((a, b) => {
-                if (a.experience > b.experience) return -1;
-                if (a.experience === b.experience) return 0;
-                if (a.experience < b.experience) return +1;
+                if (Number(a.experience) > Number(b.experience)) return -1;
+                if (Number(a.experience) === Number(b.experience)) return 0;
+                if (Number(a.experience) < Number(b.experience)) return +1;
             });
         },
 
@@ -144,7 +144,17 @@ let app = new Vue({
         },
 
         expSave: event => {
-
+            app.spinner = true;
+            let id = event.target.dataset.id;
+            let value = event.target.value;
+            event.target.previousElementSibling.innerHTML = value;
+            app.fetch('/api/skill/experience/' + id, 'PATCH', {experience: value})
+                .then(() => {
+                    event.target.previousElementSibling.style.display = 'inline';
+                    event.target.style.display = 'none';
+                    app.fetchCandidate();
+                    app.spinner = false;
+                })
         }
     }
 });

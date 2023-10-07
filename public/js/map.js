@@ -1,18 +1,21 @@
 // Функция ymaps.ready() будет вызвана, когда
 // загрузятся все компоненты API, а также когда будет готово DOM-дерево.
 ymaps.ready(init);
-function init(){
+
+function init() {
     // Создание карты.
-    var myMap = new ymaps.Map("map", {
-        // Координаты центра карты.
-        // Порядок по умолчанию: «широта, долгота».
-        // Чтобы не определять координаты центра карты вручную,
-        // воспользуйтесь инструментом Определение координат.
-        center: [55.76, 37.64],
-        // Уровень масштабирования. Допустимые значения:
-        // от 0 (весь мир) до 19.
-        zoom: 7
-    });
+    if (!window.myMap) {
+        window.myMap = new ymaps.Map("map", {
+            // Координаты центра карты.
+            // Порядок по умолчанию: «широта, долгота».
+            // Чтобы не определять координаты центра карты вручную,
+            // воспользуйтесь инструментом Определение координат.
+            center: [55.76, 37.64],
+            // Уровень масштабирования. Допустимые значения:
+            // от 0 (весь мир) до 19.
+            zoom: 7
+        });
+    }
     ymaps.geocode(app.candidate.place, {
         /**
          * Опции запроса
@@ -37,12 +40,13 @@ function init(){
         firstGeoObject.properties.set('iconCaption', firstGeoObject.getAddressLine());
 
         // Добавляем первый найденный геообъект на карту.
-        myMap.geoObjects.add(firstGeoObject);
+        //myMap.geoObjects.add(firstGeoObject);
         // Масштабируем карту на область видимости геообъекта.
-        myMap.setBounds(bounds, {
-            // Проверяем наличие тайлов на данном масштабе.
-            checkZoomRange: true
-        });
+        // myMap.setBounds(bounds, {
+        //     // Проверяем наличие тайлов на данном масштабе.
+        //     checkZoomRange: true
+        // });
+        window.myMap.setCenter(coords);
 
         /**
          * Все данные в виде javascript-объекта.

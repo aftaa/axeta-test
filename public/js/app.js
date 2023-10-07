@@ -1,11 +1,18 @@
 let app = new Vue({
     el: '#app',
     data: {
-        candidateId: null,
-        candidate: {},
+        candidateId: {},
+        candidate: {
+            portfolios: [],
+            skills: [
+                {experience: 0}
+            ],
+        },
         spinner: false,
+
         nameIsOk: false,
         nameIsKo: false,
+
         placeIsOk: false,
         placeIsKo: false
     },
@@ -27,7 +34,7 @@ let app = new Vue({
         sortSkills: () => {
             app.candidate.skills.sort((a, b) => {
                 if (a.experience > b.experience) return -1;
-                if (a.experience == b.experience) return 0;
+                if (a.experience === b.experience) return 0;
                 if (a.experience < b.experience) return +1;
             });
         },
@@ -54,7 +61,7 @@ let app = new Vue({
         storeName: () => {
             if (app.nameIsKo) return;
             app.spinner = true;
-            app.fetch('/api/candidate/' + app.candidateId, 'PUT', {name: app.candidate.name})
+            app.fetch('/api/candidate/name/' + app.candidateId, 'PATCH', {name: app.candidate.name})
                 .then(() => {
                     app.spinner = false;
                     app.nameIsOk = true;
@@ -65,10 +72,11 @@ let app = new Vue({
         storePlace: () => {
             if (app.placeIsKo) return;
             app.spinner = true;
-            app.fetch('/api/candidate/' + app.candidateId, 'PATCH', {place: app.candidate.place})
+            app.fetch('/api/candidate/place/' + app.candidateId, 'PATCH', {place: app.candidate.place})
                 .then(() => {
                     app.spinner = false;
                     app.placeIsOk = true;
+                    init();
                     setTimeout(() => app.placeIsOk = false, 1000);
                 });
         }

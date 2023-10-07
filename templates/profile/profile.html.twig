@@ -97,7 +97,7 @@
         <br><br>
     </main>
     <script type="text/javascript" src="{{ asset('js/app.js') }}?t={{ 'now'|date('U') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/map.js') }}?t={{ 'now'|date('U') }}"></script>
     <script>
         app.candidateId = {{ candidateId }};
         app.fetchCandidate();

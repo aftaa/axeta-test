@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\EntityManagerInterface;
 
 class AxetaPurger extends ORMPurger
@@ -15,13 +16,14 @@ class AxetaPurger extends ORMPurger
         parent::__construct($this->entityManager, $excluded);
     }
 
+    /**
+     * @throws Exception
+     */
     public function purge(): void
     {
         $connection = $this->entityManager->getConnection();
-
         try {
             $connection->executeStatement('SET FOREIGN_KEY_CHECKS = 0');
-
             parent::purge();
         } finally {
             $connection->executeStatement('SET FOREIGN_KEY_CHECKS = 1');

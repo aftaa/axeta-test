@@ -24,6 +24,14 @@ let app = new Vue({
             return fetch(uri, options);
         },
 
+        sortSkills: () => {
+            app.candidate.skills.sort((a, b) => {
+                if (a.experience > b.experience) return -1;
+                if (a.experience == b.experience) return 0;
+                if (a.experience < b.experience) return +1;
+            });
+        },
+
         fetchCandidate: () => {
             app.spinner = true;
             app.fetch('/api/candidate/' + app.candidateId)
@@ -35,19 +43,11 @@ let app = new Vue({
                 });
         },
 
-        sortSkills: () => {
-            app.candidate.skills.sort((a, b) => {
-                if (a.experience > b.experience) return -1;
-                if (a.experience == b.experience) return 0;
-                if (a.experience < b.experience) return +1;
-            });
-        },
-
         nameKeyUp: () => app.nameIsKo = !app.candidate.name.length,
         placeKeyUp: () => {
             app.placeIsKo = !app.candidate.place.length;
             if (app.placeIsKo) return;
-            let pcre = /[^ ,0-9a-zа-я\.]/i;
+            let pcre = /[^- ,0-9a-zа-я\.]/i;
             app.placeIsKo = pcre.test(app.candidate.place);
         },
 

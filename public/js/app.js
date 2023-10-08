@@ -50,7 +50,7 @@ let app = new Vue({
                     document.getElementById('app').style.display = 'block';
                     document.getElementById('loading').style.display = 'none';
                 })
-                .catch(e => {
+                .catch(() => {
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('not-found').style.display = 'block';
                 });

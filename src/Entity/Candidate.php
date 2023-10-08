@@ -7,8 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use OpenApi\Attributes as OA;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 #[ORM\Entity(repositoryClass: CandidateRepository::class)]
 class Candidate
@@ -16,51 +16,63 @@ class Candidate
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('api')]
+    #[Groups('full')]
+    #[OA\Property(description: 'ИД кандидата')]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups('api')]
+    #[Groups('full')]
+    #[OA\Property(description: 'Имя')]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups('api')]
+    #[OA\Property(description: 'Местоположение')]
+    #[Groups('full')]
     private ?string $place = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('api')]
+    #[OA\Property(description: 'Юзерпик')]
+    #[Groups('full')]
     private ?string $photo = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups('api')]
+    #[Groups('full')]
+    #[OA\Property(description: 'Местоположение')]
+
     private ?string $code = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('api')]
+    #[OA\Property(description: 'Режим работы')]
+    #[Groups('full')]
     private ?string $availability = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('api')]
+    #[OA\Property(description: 'Рабочее окружение')]
+    #[Groups('full')]
     private ?string $environment = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups('api')]
+    #[OA\Property(description: 'Самое удивительно')]
+    #[Groups('full')]
     private ?string $amaizing = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('api')]
+    #[OA\Property(description: 'Ожидание от работы')]
+    #[Groups('full')]
     private ?string $expectation = null;
 
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Portfolio::class, cascade: ['persist'])]
-    #[Groups('api')]
+    #[OA\Property(description: 'Коллекция портфолио')]
+    #[Groups('full')]
     private Collection $portfolios;
 
     #[ORM\OneToMany(mappedBy: 'candidate', targetEntity: Skill::class, cascade: ['persist'])]
-    #[Groups('api')]
+    #[OA\Property(description: 'Навыки')]
+    #[Groups('full')]
     private Collection $skills;
 
     #[ORM\Column(length: 50)]
-    #[Groups('api')]
+    #[Groups('full')]
     private ?string $lang = null;
 
     public function __construct()

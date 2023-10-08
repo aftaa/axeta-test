@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SkillRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use OpenApi\Attributes as OA;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: SkillRepository::class)]
@@ -13,19 +14,23 @@ class Skill
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('api')]
+    #[OA\Property(description: 'ИД навыка')]
+    #[Groups('full')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'skills')]
     #[ORM\JoinColumn(nullable: false)]
+    #[OA\Property(description: 'кандидат')]
     private ?Candidate $candidate = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups('api')]
+    #[OA\Property(description: 'название навыка')]
+    #[Groups('full')]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 1)]
-    #[Groups('api')]
+    #[OA\Property(description: 'опыт в годах')]
+    #[Groups('full')]
     private ?string $experience = null;
 
     public function getId(): ?int

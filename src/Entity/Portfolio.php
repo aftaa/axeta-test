@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PortfolioRepository;
 use Doctrine\ORM\Mapping as ORM;
+use OpenApi\Attributes as OA;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: PortfolioRepository::class)]
@@ -12,19 +13,23 @@ class Portfolio
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('api')]
+    #[OA\Property(description: 'ИД порфолио')]
+    #[Groups('full')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'portfolios')]
     #[ORM\JoinColumn(nullable: false)]
+    #[OA\Property(description: 'кандидат')]
     private ?Candidate $candidate = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('api')]
+    #[OA\Property(description: 'название порфолио')]
+    #[Groups('full')]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('api')]
+    #[OA\Property(description: 'ссылка на портфолио')]
+    #[Groups('full')]
     private ?string $href = null;
 
     public function getId(): ?int

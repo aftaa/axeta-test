@@ -43,8 +43,8 @@ let app = new Vue({
         fetchCandidate: () => {
             return app.fetch('/api/candidate/' + app.candidateId)
                 .then(response => response.json())
-                .then(user => {
-                    app.candidate = user;
+                .then(candidate => {
+                    app.candidate = candidate;
                     app.sortSkills();
                     document.getElementById('app').style.display = 'block';
                     document.getElementById('loading').style.display = 'none';

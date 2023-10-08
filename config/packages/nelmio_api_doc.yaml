@@ -2,7 +2,7 @@ nelmio_api_doc:
     documentation:
         info:
             title: Axeta
-            description: This is an awesome app!
+            description: API documentation
             version: 0.0.1
     areas: # to filter documented areas
         path_patterns:

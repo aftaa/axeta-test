@@ -46,8 +46,13 @@ let app = new Vue({
                 .then(candidate => {
                     app.candidate = candidate;
                     app.sortSkills();
+                    init();
                     document.getElementById('app').style.display = 'block';
                     document.getElementById('loading').style.display = 'none';
+                })
+                .catch(e => {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('not-found').style.display = 'block';
                 });
         },
 

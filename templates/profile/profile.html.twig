@@ -115,10 +115,11 @@
                 <span class="visually-hidden">Загрузка...</span>
             </div>
         </div>
+        <h1 align="center" id="not-found">Профиль не найден</h1>
         <br><br>
     </main>
+    <script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
     <script>
         app.candidateId = {{ candidateId }};
         app.fetchCandidate();

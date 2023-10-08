@@ -10,6 +10,9 @@ let app = new Vue({
         },
         spinner: false,
 
+        name: '',
+        place: '',
+
         nameIsOk: false,
         nameIsKo: false,
 
@@ -18,7 +21,7 @@ let app = new Vue({
 
         newSkill: false,
 
-        pcre:  /[^- ,0-9a-zа-я]/i
+        pcre: /[^- ,0-9a-zа-я]/i
     },
     methods: {
         fetch: (uri, method = 'GET', body = null) => {
@@ -49,7 +52,8 @@ let app = new Vue({
                 .then(candidate => {
                     app.candidate = candidate;
                     app.sortSkills();
-                    // init();
+                    app.name = app.candidate.name;
+                    app.place = app.candidate.place;
                     document.getElementById('app').style.display = 'block';
                     document.getElementById('loading').style.display = 'none';
                 })
@@ -62,7 +66,7 @@ let app = new Vue({
         nameKeyUp: () => {
             app.nameIsKo = !app.candidate.name.length;
             if (app.placeIsKo) return;
-            app.placeIsKo = app.pcre.test(app.candidate.place);
+            app.nameIsKo = app.pcre.test(app.candidate.name);
         },
 
         placeKeyUp: () => {

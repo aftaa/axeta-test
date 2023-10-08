@@ -16,11 +16,13 @@
                         <input type="text" required data-bs-toggle="tooltip" data-bs-placement="right"
                                data-bs-title="edit and press Enter to Save, Esc to cancel" id="candidate-name"
                                v-model="candidate.name" v-on:keyup.enter="storeName" v-on:keyup="nameKeyUp"
+                               v-on:keyup.esc="candidate.name = name"
                                v-bind:class="{ name: true, nameIsOk: nameIsOk, nameIsKo: nameIsKo }">
                         <br>
                         <input type="text" required data-bs-toggle="tooltip" data-bs-placement="right"
                                data-bs-title="edit and press Enter to Save, Esc to cancel" id="candidate-place"
                                v-model="candidate.place" v-on:keyup.enter="storePlace" v-on:keyup="placeKeyUp"
+                               v-on:keyup.esc="candidate.place = place"
                                v-bind:class="{ place: true, placeIsOk: placeIsOk, placeIsKo: placeIsKo }">
 
                         <div class="main-info-item"><img src="{{ asset('/svg/en.svg') }}">

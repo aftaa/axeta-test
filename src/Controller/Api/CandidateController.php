@@ -68,6 +68,10 @@ class CandidateController extends AbstractController
         response: 422,
         description: 'невалидное тело запроса',
     )]
+    #[OA\Response(
+        response: 404,
+        description: 'кандидат не существует',
+    )]
     public function putName(Candidate $candidate, #[MapRequestPayload] CandidateName $dto, CandidateRepository $repository): JsonResponse
     {
         $candidate->setName($dto->getName());
@@ -96,7 +100,12 @@ class CandidateController extends AbstractController
     #[OA\Response(
         response: 422,
         description: 'невалидное тело запроса',
-    )]    public function patchPlace(Candidate $candidate, #[MapRequestPayload] CandidatePlace $dto, CandidateRepository $repository): JsonResponse
+    )]
+    #[OA\Response(
+        response: 404,
+        description: 'кандидат не существует',
+    )]
+    public function patchPlace(Candidate $candidate, #[MapRequestPayload] CandidatePlace $dto, CandidateRepository $repository): JsonResponse
     {
         $candidate->setPlace($dto->getPlace());
         $repository->save($candidate, true);

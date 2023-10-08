@@ -33,9 +33,16 @@ class SkillController extends AbstractController
         response: 422,
         description: 'невалидное тело запроса',
     )]
+    #[OA\Response(
+        response: 404,
+        description: 'кандидат не существует',
+    )]
     public function post(#[MapRequestPayload] NewSkill $dto, CandidateRepository $repository): JsonResponse
     {
         $candidate = $repository->find($dto->getCandidateId());
+        if (!$candidate) {
+            throw $this->createNotFoundException();
+        }
         $skill = new Skill();
         $skill->setName($dto->getName())->setExperience(0);
         $candidate->addSkill($skill);
@@ -119,6 +126,10 @@ class SkillController extends AbstractController
     #[OA\Response(
         response: 422,
         description: 'невалидное тело запроса',
+    )]
+    #[OA\Response(
+        response: 404,
+        description: 'скилл не существует',
     )]
     public function patchExperience(Skill $skill, #[MapRequestPayload] SkillExperience $dto, SkillRepository $repository): JsonResponse
     {

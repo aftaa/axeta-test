@@ -56,12 +56,13 @@ let app = new Vue({
         placeKeyUp: () => {
             app.placeIsKo = !app.candidate.place.length;
             if (app.placeIsKo) return;
-            let pcre = /[^- ,0-9a-zа-я\.]/i;
+            let pcre = /[^- ,0-9a-zа-я]/i;
             app.placeIsKo = pcre.test(app.candidate.place);
         },
 
-        storeName: () => {
+        storeName: event => {
             if (app.nameIsKo) return;
+            bootstrap.Tooltip.getInstance('#candidate-name').hide();
             app.spinner = true;
             app.fetch('/api/candidate/name/' + app.candidateId, 'PATCH', {name: app.candidate.name})
                 .then(() => {
@@ -73,6 +74,7 @@ let app = new Vue({
 
         storePlace: () => {
             if (app.placeIsKo) return;
+            bootstrap.Tooltip.getInstance('#candidate-place').hide();
             app.spinner = true;
             app.fetch('/api/candidate/place/' + app.candidateId, 'PATCH', {place: app.candidate.place})
                 .then(() => {

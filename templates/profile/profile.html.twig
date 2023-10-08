@@ -13,11 +13,13 @@
                         <img id="userpic" :alt="candidate.name" :src="candidate.photo">
                     </div>
                     <div class="main-info float-left">
-                        <input title="Edit and press Enter" type="text" required
+                        <input type="text" required data-bs-toggle="tooltip" data-bs-placement="right"
+                               data-bs-title="edit and press Enter to Save, Esc to cancel" id="candidate-name"
                                v-model="candidate.name" v-on:keyup.enter="storeName" v-on:keyup="nameKeyUp"
                                v-bind:class="{ name: true, nameIsOk: nameIsOk, nameIsKo: nameIsKo }">
                         <br>
-                        <input title="Edit and press Enter" type="text" required
+                        <input type="text" required data-bs-toggle="tooltip" data-bs-placement="right"
+                               data-bs-title="edit and press Enter to Save, Esc to cancel" id="candidate-place"
                                v-model="candidate.place" v-on:keyup.enter="storePlace" v-on:keyup="placeKeyUp"
                                v-bind:class="{ place: true, placeIsOk: placeIsOk, placeIsKo: placeIsKo }">
 
@@ -27,17 +29,20 @@
                         <div>
                             <ul class="ul-top">
                                 <li v-for="skill in candidate.skills">
-                                    <div v-html="skill.name" class="skill-link" v-on:click="editSkill"></div>
+                                    <div v-html="skill.name" class="skill-link" v-on:click="editSkill">
+                                    </div>
                                     <input class="skill-input display-none" type="text" v-bind:value="skill.name"
                                            v-bind:data-id="skill.id" v-on:keyup.esc="escapeSkill"
-                                           v-on:keyup.enter="saveSkill">
+                                           v-on:keyup.enter="saveSkill"
+                                           title="Click, edit and press Enter to save. Empty value deletes skill. Escape to cancel">
                                 </li>
                                 <li>
                                     <div class="skill-link skill-plus" v-on:click="newSkill = true" v-if="!newSkill">
                                         +
                                     </div>
                                     <input v-bind:class="{'skill-input': true}" v-if="newSkill" type="text"
-                                           v-on:keyup.esc="newSkill = false" v-on:keyup.enter="addSkill">
+                                           v-on:keyup.esc="newSkill = false" v-on:keyup.enter="addSkill"
+                                           placeholder="press enter to add or escape">
                                 </li>
                             </ul>
                         </div>
@@ -113,9 +118,11 @@
         <br><br>
     </main>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-{#    <script type="text/javascript" src="{{ asset('js/map.js') }}"></script>#}
+    {#    <script type="text/javascript" src="{{ asset('js/map.js') }}"></script> #}
     <script>
         app.candidateId = {{ candidateId }};
         app.fetchCandidate();
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
     </script>
 {% endblock %}

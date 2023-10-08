@@ -42,7 +42,7 @@
                                     </div>
                                     <input v-bind:class="{'skill-input': true}" v-if="newSkill" type="text"
                                            v-on:keyup.esc="newSkill = false" v-on:keyup.enter="addSkill"
-                                           placeholder="press enter to add or escape">
+                                           placeholder="Enter to create or Escape">
                                 </li>
                             </ul>
                         </div>
@@ -118,7 +118,7 @@
         <br><br>
     </main>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    {#    <script type="text/javascript" src="{{ asset('js/map.js') }}"></script> #}
+        <script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
     <script>
         app.candidateId = {{ candidateId }};
         app.fetchCandidate();

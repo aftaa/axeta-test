@@ -9,4 +9,3 @@ sleep 2
 docker compose exec mysql ./init-db.sh
 docker compose exec php bin/console doctrine:migrations:migrate
 docker compose exec php bin/console doctrine:fixtures:load --purger axeta --purge-with-truncate
-echo 'Initialization completed.';

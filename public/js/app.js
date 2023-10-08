@@ -56,7 +56,10 @@ let app = new Vue({
                     app.place = app.candidate.place;
                     document.getElementById('app').style.display = 'block';
                     document.getElementById('loading').style.display = 'none';
-                    setTimeout(() => init(), 3000);
+                    setTimeout(() => {
+                        init();
+                        document.getElementById('map').style.display = 'block';
+                    }, 3000);
                 })
                 .catch(() => {
                     document.getElementById('loading').style.display = 'none';

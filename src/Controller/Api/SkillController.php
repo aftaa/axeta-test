@@ -50,17 +50,13 @@ class SkillController extends AbstractController
         return $this->json(null, Response::HTTP_CREATED);
     }
 
-
     #[Route('/api/skill/{id}', methods: ['DELETE'])]
     #[OA\Parameter(
         name: 'id',
-        description: 'ИД навыка',
+        description: 'ИД навыка для удаления',
         in: 'path',
         allowEmptyValue: false,
         schema: new OA\Schema(type: 'string',),
-    )]
-    #[OA\RequestBody(
-        description: 'Удалить навык',
     )]
     #[OA\Response(
         response: 204,

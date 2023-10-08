@@ -2,6 +2,8 @@
 
 https://axeta.data-files.ru/profile/1
 
+https://axeta.data-files.ru/api/doc
+
 ### установка:
 
 git clone git@github.com:aftaa/axeta-test.git

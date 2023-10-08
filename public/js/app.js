@@ -16,7 +16,9 @@ let app = new Vue({
         placeIsOk: false,
         placeIsKo: false,
 
-        newSkill: false
+        newSkill: false,
+
+        pcre:  /[^- ,0-9a-zа-я]/i
     },
     methods: {
         fetch: (uri, method = 'GET', body = null) => {
@@ -57,13 +59,16 @@ let app = new Vue({
                 });
         },
 
-        nameKeyUp: () => app.nameIsKo = !app.candidate.name.length,
+        nameKeyUp: () => {
+            app.nameIsKo = !app.candidate.name.length;
+            if (app.placeIsKo) return;
+            app.placeIsKo = app.pcre.test(app.candidate.place);
+        },
 
         placeKeyUp: () => {
             app.placeIsKo = !app.candidate.place.length;
             if (app.placeIsKo) return;
-            let pcre = /[^- ,0-9a-zа-я]/i;
-            app.placeIsKo = pcre.test(app.candidate.place);
+            app.placeIsKo = app.pcre.test(app.candidate.place);
         },
 
         storeName: event => {

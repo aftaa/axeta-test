@@ -9,7 +9,7 @@ readonly class SkillExperience
 {
     public function __construct(
         #[Assert\NotBlank()]
-        #[OA\Property(description: 'кол-во лет опыта')]
+        #[OA\Property(description: 'кол-во лет опыта', type: 'integer')]
         private string $experience,
     )
     {

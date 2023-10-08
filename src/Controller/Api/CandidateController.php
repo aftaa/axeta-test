@@ -66,7 +66,7 @@ class CandidateController extends AbstractController
     )]
     #[OA\Response(
         response: 422,
-        description: 'в параметрах запроса нет соответствия  DTO\CandidateName',
+        description: 'невалидное тело запроса',
     )]
     public function putName(Candidate $candidate, #[MapRequestPayload] CandidateName $dto, CandidateRepository $repository): JsonResponse
     {
@@ -95,7 +95,7 @@ class CandidateController extends AbstractController
     )]
     #[OA\Response(
         response: 422,
-        description: 'в параметрах запроса нет соответствия  DTO\CandidatePlace',
+        description: 'невалидное тело запроса',
     )]    public function patchPlace(Candidate $candidate, #[MapRequestPayload] CandidatePlace $dto, CandidateRepository $repository): JsonResponse
     {
         $candidate->setPlace($dto->getPlace());

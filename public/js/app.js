@@ -35,7 +35,8 @@ let app = new Vue({
 
         sortSkills: () => {
             app.candidate.skills.sort((a, b) => {
-                a = Number(a.experience), b = Number(b.experience);
+                a = Number(a.experience);
+                b = Number(b.experience);
                 return b - a;
             });
         },
@@ -46,13 +47,13 @@ let app = new Vue({
                 .then(candidate => {
                     app.candidate = candidate;
                     app.sortSkills();
-                    init();
+                    // init();
                     document.getElementById('app').style.display = 'block';
                     document.getElementById('loading').style.display = 'none';
                 })
                 .catch(() => {
                     document.getElementById('loading').style.display = 'none';
-                    document.getElementById('not-found').style.display = 'block';
+                    alert('Profile not found');
                 });
         },
 
@@ -109,7 +110,7 @@ let app = new Vue({
             event.target.style.display = 'none';
             event.target.nextElementSibling.style.display = 'block';
         },
-        
+
         escapeSkill: event => {
             event.target.style.display = 'none';
             event.target.previousElementSibling.style.display = 'block';

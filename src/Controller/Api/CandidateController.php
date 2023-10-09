@@ -126,7 +126,7 @@ class CandidateController extends AbstractController
     )]
     public function postPhoto(Candidate $candidate, Request $request): JsonResponse
     {
-        $form = $this->createForm(CandidatePhotoType::class, $candidate)
+        $form = $this->createForm(CandidatePhotoType::class, $candidate);
         $form->handleRequest($request);
         if ($form->isValid()) {
             /** @var UploadedFile $file */

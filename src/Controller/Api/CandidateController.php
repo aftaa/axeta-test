@@ -117,6 +117,13 @@ class CandidateController extends AbstractController
     }
 
     #[Route('/api/candidate/photo/{id}', methods: ['POST'])]
+    #[OA\Parameter(
+        name: 'id',
+        description: 'ИД кандидата',
+        in: 'path',
+        allowEmptyValue: false,
+        schema: new OA\Schema(type: 'string',),
+    )]
     public function postPhoto(Candidate $candidate, Request $request): JsonResponse
     {
         $form = $this->createForm(CandidatePhotoType::class, $candidate)
@@ -126,7 +133,7 @@ class CandidateController extends AbstractController
             $file = $form->get('photo')->getData();
             $filename = $this->getParameter('userpics_directory') . $candidate->getId() . '.' . $file->getClientOriginalExtension();
             $file->move($filename);
-            $candidate->setPhoto($this->getParameter('userpics_uri_prefix') . $filename);
+            $candidate->setPhoto($this->getParameter('userpics_uri_prefix') . basename($filename));
         }
     }
 }

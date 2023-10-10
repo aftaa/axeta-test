@@ -193,7 +193,8 @@ let app = new Vue({
                 .then(data => {
                     app.candidate.photo = data.photo;
                     app.spinner = false;
-                });
+                })
+                .catch(err => console.log(err));
         }
     }
 });

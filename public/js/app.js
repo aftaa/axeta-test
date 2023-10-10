@@ -188,7 +188,11 @@ let app = new Vue({
             form.set('photo', file.files[0]);
             fetch ('/api/candidate/photo/' + app.candidateId, {
                 method: 'POST',
-                body: form
+                body: form,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
             }).then(response => response.json())
                 .then(data => {
                     app.candidate.photo = data.photo;

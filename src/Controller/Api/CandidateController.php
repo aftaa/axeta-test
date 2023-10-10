@@ -140,9 +140,11 @@ class CandidateController extends AbstractController
     )]
     public function postPhoto(Candidate $candidate, Request $request, CandidateRepository $repository): JsonResponse
     {
+        /** @var UploadedFile $file */
         $file = $request->files->get('photo');
         $filename = $candidate->getId() . '.' . $file->getClientOriginalExtension();
         $file->move($this->getParameter('userpics_directory'), $filename);
+        chmod($this->getParameter('userpics_directory' ) . $filename, 0777);
         $candidate->setPhoto($this->getParameter('userpics_uri_prefix') . basename($filename));
         $repository->save($candidate, true);
         return $this->json(['photo' => $candidate->getPhoto()], Response::HTTP_OK);

@@ -188,12 +188,14 @@ let app = new Vue({
             form.set('photo', file.files[0]);
             fetch ('/api/candidate/photo/' + app.candidateId, {
                 method: 'POST',
-                body: form,
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => response.json())
+                body: form
+                // headers: {
+                    // 'Content-type': 'multipart/form-data',
+                    // 'Accept': 'application/json',
+                    // 'Content-Type': 'application/json'
+                // }
+            })
+                .then(response => response.json())
                 .then(data => {
                     app.candidate.photo = data.photo;
                     app.spinner = false;

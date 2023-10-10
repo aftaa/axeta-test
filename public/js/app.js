@@ -178,6 +178,22 @@ let app = new Vue({
                     app.fetchCandidate();
                     app.spinner = false;
                 })
+        },
+
+        uploadPhoto: event => {
+            app.spinner = true;
+            event.preventDefault();
+            let file = event.target;
+            let form = new FormData;
+            form.set('photo', file.files[0]);
+            fetch ('/api/candidate/photo/' + app.candidateId, {
+                method: 'POST',
+                body: form
+            }).then(response => response.json())
+                .then(data => {
+                    app.candidate.photo = data.photo;
+                    app.spinner = false;
+                });
         }
     }
 });

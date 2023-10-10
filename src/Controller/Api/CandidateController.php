@@ -3,14 +3,14 @@
 namespace App\Controller\Api;
 
 use App\DTO\CandidateName;
+use App\DTO\CandidatePhoto;
 use App\DTO\CandidatePlace;
 use App\Entity\Candidate;
-use App\Form\CandidatePhotoType;
 use App\Repository\CandidateRepository;
-use Exception;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -124,16 +124,27 @@ class CandidateController extends AbstractController
         allowEmptyValue: false,
         schema: new OA\Schema(type: 'string',),
     )]
-    public function postPhoto(Candidate $candidate, Request $request): JsonResponse
+    #[OA\RequestBody(
+//        description: 'Загрузить фотографию',
+//        content: new Model(
+//            type: CandidatePhoto::class,
+//        ),
+    )]
+    #[OA\Response(
+        response: 204,
+        description: 'фотография загружена',
+    )]
+    #[OA\Response(
+        response: 404,
+        description: 'кандидат не существует',
+    )]
+    public function postPhoto(Candidate $candidate, Request $request, CandidateRepository $repository): JsonResponse
     {
-        $form = $this->createForm(CandidatePhotoType::class, $candidate);
-        $form->handleRequest($request);
-        if ($form->isValid()) {
-            /** @var UploadedFile $file */
-            $file = $form->get('photo')->getData();
-            $filename = $this->getParameter('userpics_directory') . $candidate->getId() . '.' . $file->getClientOriginalExtension();
-            $file->move($filename);
-            $candidate->setPhoto($this->getParameter('userpics_uri_prefix') . basename($filename));
-        }
+        $file = $request->files->get('photo');
+        $filename = $candidate->getId() . '.' . $file->getClientOriginalExtension();
+        $file->move($this->getParameter('userpics_directory'), $filename);
+        $candidate->setPhoto($this->getParameter('userpics_uri_prefix') . basename($filename));
+        $repository->save($candidate, true);
+        return $this->json(['photo' => $candidate->getPhoto()], Response::HTTP_OK);
     }
 }

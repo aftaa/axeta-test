@@ -10,7 +10,8 @@
             <div class="row row-top">
                 <div class="col-sm-10">
                     <div class="float-left">
-                        <img id="userpic" :alt="candidate.name" :src="candidate.photo">
+                        <img id="userpic" :alt="candidate.name" :src="candidate.photo"><br>
+                        <input type="file" name="photo" @change="uploadPhoto">
                     </div>
                     <div class="main-info float-left">
                         <input type="text" required data-bs-toggle="tooltip" data-bs-placement="right"
@@ -120,7 +121,7 @@
         <h1 align="center" id="not-found" class="display-none">Профиль не найден</h1>
         <br><br>
     </main>
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}?t={{ 'now'|date('U') }}"></script>
     <script type="text/javascript" src="{{ asset('js/map.js') }}?t={{ 'now'|date('U') }}"></script>
     <script>
         app.candidateId = {{ candidateId }};

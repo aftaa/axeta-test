@@ -20,6 +20,7 @@ services:
     restart: always
     links:
       - mysql
+      - rabbitmq
 
   mysql:
     image: mysql:latest
@@ -30,3 +31,13 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     restart: always
+
+  rabbitmq:
+    image: rabbitmq:3.11.22-management
+    hostname: rabbitmq
+    restart: always
+    volumes:
+      - ./rabbitmq:/var/lib/rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"

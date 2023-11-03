@@ -3,7 +3,6 @@
 namespace App\Controller\Api;
 
 use App\DTO\CandidateName;
-use App\DTO\CandidatePhoto;
 use App\DTO\CandidatePlace;
 use App\Entity\Candidate;
 use App\Repository\CandidateRepository;

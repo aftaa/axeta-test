@@ -1,6 +1,7 @@
 /docker/mysql
 /docker/nginx/logs
 /.idea
+/rabbitmq
 
 ###> symfony/framework-bundle ###
 /.env.local
